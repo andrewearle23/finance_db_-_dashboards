@@ -1,8 +1,8 @@
-SAP B1 → MySQL ETL & Power BI Dashboards
+# SAP B1 → MySQL ETL & Power BI Dashboards
 
 This project provides a lightweight ETL pipeline that extracts core business data from SAP Business One (SQL Server), transforms it into a clean reporting model, and loads it into a MySQL analytics database. The resulting datasets are used to build interactive Power BI dashboards for sales, inventory, purchasing, and finance.
 
-🚀 Features
+## 🚀 Features
 
 Extract SAP B1 tables and views directly from SQL Server
 
@@ -14,7 +14,8 @@ Connect Power BI directly to MySQL for analytics
 
 Modular design for easy extension and custom objects
 
-📁 Repository Structure
+## 📁 Repository Structure
+```bash
 /etl/
   extract/        # SQL Server extraction scripts
   transform/      # Data cleaning and transformation
@@ -29,6 +30,8 @@ Modular design for easy extension and custom objects
 /docs/
   architecture/   # Optional diagrams and notes
 
+```
+
 🔧 Requirements
 
 SQL Server access to SAP B1 database
@@ -39,7 +42,7 @@ Python 3.x (optional, if using Python ETL scripts)
 
 Power BI Desktop
 
-▶️ Getting Started
+## ▶️ Getting Started
 
 Configure connection settings in the ETL scripts
 
@@ -49,6 +52,6 @@ Open Power BI dashboards and update the MySQL connection
 
 Refresh to view live analytics
 
-📊 Output
+## 📊 Output
 
 A clean analytics database powering fast, flexible Power BI dashboards without impacting SAP performance.
