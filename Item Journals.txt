@@ -1,0 +1,50 @@
+Item Journals:
+
+SELECT
+    T0.[TransNum],
+    T0.[TransType],
+    T0.[CreatedBy],
+    T0.[BASE_REF],
+    T0.[DocLineNum],
+    T0.[DocDate],
+    T0.[DocDueDate],
+    T0.[CardCode],
+    T0.[CardName],
+    T0.[Ref1],
+    T0.[Ref2],
+    T0.[Comments],
+    T0.[JrnlMemo],
+    T0.[Dscription],
+    T0.[InQty],
+    T0.[OutQty],
+    T0.[Price],
+    T0.[Currency],
+    T0.[Rate],
+    T0.[Warehouse],
+    T0.[TaxDate],
+    T0.[CalcPrice],
+    T0.[ReturnAct],
+    T0.[CostAct],
+    T0.[Balance],
+    T0.[CreateDate],
+    T0.[TransValue],
+    T0.[InvntAct],
+    T0.[Allocation],
+    T0.[CogsVal],
+    T0.[IOffIncAcc],
+    T0.[IOffIncVal],
+    T0.[DOffDecVal],
+    T0.[OcrCode],
+    T0.[OcrCode2],
+    T0.[OcrCode3],
+    T0.[OcrCode4],
+    T0.[OcrCode5]
+
+FROM 
+    OINM T0
+
+WHERE 
+    T0.[ItemCode] = 'A30108'
+
+ORDER BY 
+    T0.[TransNum]

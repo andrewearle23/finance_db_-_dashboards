@@ -1,0 +1,57 @@
+SELECT
+T1.[BaseType],
+T0.[DocEntry], 
+T0.[DocNum],
+T0.[CardName], 
+T0.[NumAtCard], 
+T1.[OcrCode], 
+T0.[DocDate], 
+T1.[WhsCode], 
+T1.[Dscription], 
+Case When T1.[BaseType] = '203' THEN T1.[Quantity] * 0 Else T1.[Quantity] End As 'Quantity',
+T1.[UomCode],
+T1.[Price], 
+T1.[LineTotal], 
+T0.[DocTotal] AS "Document Total R", 
+T0.[DocTotalFC] AS "Document Total $",
+T0.[DpmAmntFC],
+T2.[PrcName] AS "Product",
+T3.[PrcName] AS "Product Group",
+T4.[PrcName] AS "Sales Employee",
+
+FROM OINV T0  INNER JOIN INV1 T1 ON T0.[DocEntry] = T1.[DocEntry] 
+LEFT OUTER JOIN OPRC T2 ON T1.[OcrCode2] = T2.[PrcCode]
+LEFT OUTER JOIN OPRC T3 ON T1.[OcrCode4] = T3.[PrcCode]
+LEFT OUTER JOIN OPRC T4 ON T1.[OcrCode5] = T4.[PrcCode]
+
+WHERE T1.[ItemCode] >= 'A10000' AND  T1.[ItemCode] <= 'A99999'
+
+UNION ALL
+
+SELECT
+T1.[BaseType],
+T0.[DocEntry], 
+T0.[DocNum],
+T0.[CardName], 
+T0.[NumAtCard], 
+T1.[OcrCode], 
+T0.[DocDate], 
+T1.[WhsCode], 
+T1.[Dscription],
+Case When T1.[BaseType] = '203' THEN T1.[Quantity] * 0 Else T1.[Quantity] * -1 End As 'Quantity',
+T1.[UomCode],
+T1.[Price], 
+T1.[LineTotal], 
+T0.[DocTotal] AS "Document Total R", 
+T0.[DocTotalFC] AS "Document Total $",
+T0.[DpmAmntFC],
+T2.[PrcName] AS "Product",
+T3.[PrcName] AS "Product Group",
+T4.[PrcName] AS "Sales Employee",
+
+FROM OINV T0  INNER JOIN INV1 T1 ON T0.[DocEntry] = T1.[DocEntry] 
+LEFT OUTER JOIN OPRC T2 ON T1.[OcrCode2] = T2.[PrcCode]
+LEFT OUTER JOIN OPRC T3 ON T1.[OcrCode4] = T3.[PrcCode]
+LEFT OUTER JOIN OPRC T4 ON T1.[OcrCode5] = T4.[PrcCode]
+
+WHERE T1.[ItemCode] >= 'A10000' AND  T1.[ItemCode] <= 'A99999'

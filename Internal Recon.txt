@@ -1,0 +1,33 @@
+Internal Recon:
+
+SELECT 
+    T0.[ReconNum],
+    T0.[LineSeq], 
+    T0.[TransId], 
+    T0.[TransRowId], 
+    T0.[SrcObjTyp], 
+    T0.[SrcObjAbs], 
+    T1.[IsSystem], 
+    T1.[InitObjTyp],   
+    T1.[ReconJEId],  
+    T0.[IsCredit],
+    T1.[ReconType],
+    T1.[CreateDate],  
+    T1.[ReconDate],    
+    T1.[ReconCurr],  
+    T0.[ReconSum], 
+    T0.[ReconSumFC], 
+    T0.[ReconSumSC], 
+    T0.[FrgnCurr],
+    T0.[SumMthCurr],
+    T1.[Total]
+    
+
+FROM ITR1 T0  
+    LEFT JOIN OITR T1 ON T0.[ReconNum] = T1.[ReconNum] 
+
+WHERE 
+    T0.[ShortName] = 'EXX002' 
+
+ORDER BY 
+    T1.[ReconNum] DESC
