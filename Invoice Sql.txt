@@ -1,0 +1,59 @@
+SELECT
+    T1.BaseType,
+    T0.DocNum,
+    T0.CardName,
+    T1.OcrCode,
+    T0.DocDate,
+    T1.Dscription,
+    CASE 
+        WHEN T1.BaseType = '203' THEN 0
+        ELSE T1.Quantity
+    END AS Quantity,
+    T1.UomCode,
+    T0.DocTotal     AS Document_Total_R,
+    T0.DpmAmnt,
+    T0.DocTotalSy   AS Document_Total_USD,
+    T0.DpmAmntSC,
+    T2.PrcName      AS Client,
+    T4.PrcName      AS Sales_Employee
+
+FROM OINV T0
+
+INNER JOIN INV1 T1 
+    ON T0.DocEntry = T1.DocEntry
+LEFT JOIN OPRC T2 
+    ON T1.OcrCode3 = T2.PrcCode
+LEFT JOIN OPRC T4 
+    ON T1.OcrCode5 = T4.PrcCode
+WHERE T1.ItemCode = 'A30108'
+
+UNION ALL
+
+SELECT
+    T1.BaseType,
+    T0.DocNum,
+    T0.CardName,
+    T1.OcrCode,
+    T0.DocDate,
+    T1.Dscription,
+    CASE 
+        WHEN T1.BaseType = '203' THEN 0
+        ELSE T1.Quantity * -1
+    END AS Quantity,
+    T1.UomCode,
+    -T0.DocTotal     AS Document_Total_R,
+    -T0.DpmAmnt,
+    -T0.DocTotalSy   AS Document_Total_USD,
+    -T0.DpmAmntSC,
+    T2.PrcName      AS Client,
+    T4.PrcName      AS Sales_Employee
+
+FROM ORIN T0
+
+INNER JOIN RIN1 T1 
+    ON T0.DocEntry = T1.DocEntry
+LEFT JOIN OPRC T2 
+    ON T1.OcrCode3 = T2.PrcCode
+LEFT JOIN OPRC T4 
+    ON T1.OcrCode5 = T4.PrcCode
+WHERE T1.ItemCode = 'A30108';
